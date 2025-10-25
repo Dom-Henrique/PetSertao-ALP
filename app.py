@@ -7,7 +7,8 @@ dados_senha = []
 dados_tipo = []
 
 # Produtos e serviços
-prod_serv = []
+produto = []
+servico = []
 
 # Sistema funcionando
 print("Bem-vindo ao PetSertão\nLugar de muito amor e compaixão")
@@ -39,7 +40,6 @@ while True:
         dados_senha.append(senhausuario)
         dados_tipo.append(tipousuario)
 
-        print('Login bem-sucedido!')
         print(f'Bem-vindo(a), {nomeusuario}!')
 
     elif menu == 2:
@@ -73,6 +73,7 @@ while True:
                                       f'Nome: {nomeusuario}\tPosição: {dados_nome.index(i)}\n'
                                       f'E-mail: {emailusuario}\tPosição: {dados_email.index(j)}\n')
 
+        break
     else:
         print('Obrigado por usar nosso sistema\nO PetSertão agradece! Volte sempre!')
         break
@@ -85,29 +86,78 @@ while True:
                                   "1 - Cadastrar produtos/serviços\n"
                                   "2 - Buscar produto/serviço\n"
                                   "3 - Atualizar dados\n"
-                                  "4 - Remover dados\n"))
+                                  "4 - Remover dados\n"
+                                  "5 - Sair\n"))
+
         if opcao_usuario == 1:
-            dados_prodserv = []
-            tipo = int(input('1 - Produto\t2 - Serviço\n'))
-            dados_prodserv.append(tipo)
-            nome_prodserv = input('Produto/serviço: ')
-            dados_prodserv.append(nome_prodserv)
-            if tipo == 2:
-                horarios = input("Horário (08h:18h): ")
-                dados_prodserv.append(horarios)
-            valor = float(input('Valor do produto/serviço: '))
-            dados_prodserv.append(valor)
-            prod_serv.append(dados_prodserv)
+            tipo_acao = int(input("1 - Produto\t2 - Serviço\n"))
+            if tipo_acao == 1:
+                nomeproduto = input('Digite o nome do produto: ').upper()
+                produtovalor = float(input('Digite o valor do produto: '))
+                qtnd_disponivel = int(input('Digite a quantidade no estoque: '))
+
+                dados_produto = [nomeproduto, produtovalor, qtnd_disponivel]
+
+                produto.append(dados_produto)
+                print('Cadastro bem-sucedido!')
+
+            elif tipo_acao == 2:
+                nomeservico = input('Digite o nome do serviço: ').upper()
+                servicovalor = float(input('Digite o valor do produto: '))
+                horario_func = input('Digite o horário de funcionamento: ')
+
+                dados_servico = [nomeservico, servicovalor, horario_func]
+
+                servico.append(dados_servico)
+                print('Cadastro bem-sucedido!')
+
         elif opcao_usuario == 2:
-            nome_prodserv = input('Produto/serviço: ')
-            for i in dados_prodserv:
-                if nome_prodserv in prod_serv[dados_prodserv[1]]:
-                    print(f'Produto/Serviço: {nome_prodserv}'
-                          f'Tipo: {prod_serv[dados_prodserv[0]]}'
-                          f'Valor: {prod_serv[dados_prodserv[-1]]}')
+            nomeprodserv = input('Digite o nome do produto: ').upper()
+            tipo = int(input('1 - Produto\t2 - Serviço:\n'))
+            if tipo == 1:
+                for nomeprodserv in produto:
+                    if nomeprodserv == dados_produto[0]:
+                        print(f'Dados do produto: {produto.index(nomeprodserv)}')
+            elif tipo == 2:
+                for nomeprodserv in servico:
+                    if nomeprodserv == dados_produto[0]:
+                        print(f'Dados do Serviço: {servico.index(nomeprodserv)}')
+
         elif opcao_usuario == 3:
-            nome_prodserv = input('Produto/serviço: ')
-            for i in dados_prodserv:
-                if nome_prodserv in prod_serv[dados_prodserv[1]]:
-                    print('NÃO É POSSÍVEL ALTERAR O TIPO')
-                    dados_prodserv[0] = input('Produto/serviço: ')
+            nomeprodserv = input('Digite o nome do produto: ').upper()
+            tipo = int(input('1 - Produto\t2 - Serviço:\n'))
+            if tipo == 1:
+                for nomeprodserv in produto:
+                    if nomeprodserv == produto[0]:
+                        dados_produto[0] = input('Digite o nome do produto: ').upper()
+                        dados_produto[1] = input('Digite o valor do produto: ')
+                        dados_produto[2] = input('Digite a quantidade disponível: ')
+
+                        print('Atualização feita com sucesso!')
+            elif tipo == 2:
+                for nomeprodserv in servico:
+                    if nomeprodserv == nomeservico[0]:
+                        dados_servico[0] = input('Digite o nome do serviço: ').upper()
+                        dados_servico[1] = input('Digite o valor do serviço: ')
+                        dados_servico[2] = input('Digite o horário de funcionamento: ')
+
+                        print('Atualização feita com sucesso!')
+
+        elif opcao_usuario == 4:
+            nomeprodserv = input('Digite o nome do produto: ').upper()
+            tipo = int(input('1 - Produto\t2 - Serviço:\n'))
+            if tipo == 1:
+                for nomeprodserv in produto:
+                    if nomeprodserv == nomeproduto[0]:
+                        produto.clear()
+
+                        print('Atualização feita com sucesso!')
+            elif tipo == 2:
+                for nomeprodserv in servico:
+                    if nomeprodserv == nomeservico[0]:
+                        servico.clear()
+
+                        print('Atualização feita com sucesso!')
+
+        elif opcao_usuario == 5:
+            break
