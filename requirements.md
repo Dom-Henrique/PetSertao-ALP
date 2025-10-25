@@ -6,3 +6,6 @@
 ## Regras
 - Arquivo único
 - Não pode conter funções
+
+## Área de ADM
+Cadastrar produtos/serviços: nome, valor, horário de funcionamento (se for serviço), quantidade
