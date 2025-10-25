@@ -115,31 +115,31 @@ while True:
             nomeprodserv = input('Digite o nome do produto: ').upper()
             tipo = int(input('1 - Produto\t2 - Serviço:\n'))
             if tipo == 1:
-                for nomeprodserv in produto:
-                    if nomeprodserv == dados_produto[0]:
-                        print(f'Dados do produto: {produto.index(nomeprodserv)}')
+                for produtinhos in produto:
+                    if nomeprodserv == produtinhos[0]:
+                        print(f'Dados do produto: {produtinhos[produtinhos.index(nomeprodserv)]}')
             elif tipo == 2:
-                for nomeprodserv in servico:
-                    if nomeprodserv == dados_produto[0]:
-                        print(f'Dados do Serviço: {servico.index(nomeprodserv)}')
+                for servicinhos in servico:
+                    if nomeprodserv == servicinhos[0]:
+                        print(f'Dados do Serviço: {servicinhos[servicinhos.index(nomeprodserv)]}')
 
         elif opcao_usuario == 3:
             nomeprodserv = input('Digite o nome do produto: ').upper()
             tipo = int(input('1 - Produto\t2 - Serviço:\n'))
             if tipo == 1:
-                for nomeprodserv in produto:
-                    if nomeprodserv == produto[0]:
-                        dados_produto[0] = input('Digite o nome do produto: ').upper()
-                        dados_produto[1] = input('Digite o valor do produto: ')
-                        dados_produto[2] = input('Digite a quantidade disponível: ')
+                for produtinhos in produto:
+                    if nomeprodserv == produtinhos[0]:
+                        produtinhos[0] = input('Digite o nome do produto: ').upper()
+                        produtinhos[1] = input('Digite o valor do produto: ')
+                        produtinhos[2] = input('Digite a quantidade disponível: ')
 
                         print('Atualização feita com sucesso!')
             elif tipo == 2:
-                for nomeprodserv in servico:
-                    if nomeprodserv == nomeservico[0]:
-                        dados_servico[0] = input('Digite o nome do serviço: ').upper()
-                        dados_servico[1] = input('Digite o valor do serviço: ')
-                        dados_servico[2] = input('Digite o horário de funcionamento: ')
+                for servicinhos in servico:
+                    if nomeprodserv == servicinhos[0]:
+                        servicinhos[0] = input('Digite o nome do serviço: ').upper()
+                        servicinhos[1] = input('Digite o valor do serviço: ')
+                        servicinhos[2] = input('Digite o horário de funcionamento: ')
 
                         print('Atualização feita com sucesso!')
 
@@ -147,14 +147,14 @@ while True:
             nomeprodserv = input('Digite o nome do produto: ').upper()
             tipo = int(input('1 - Produto\t2 - Serviço:\n'))
             if tipo == 1:
-                for nomeprodserv in produto:
-                    if nomeprodserv == nomeproduto[0]:
+                for produtinhos in produto:
+                    if nomeprodserv == produtinhos[0]:
                         produto.clear()
 
                         print('Atualização feita com sucesso!')
             elif tipo == 2:
-                for nomeprodserv in servico:
-                    if nomeprodserv == nomeservico[0]:
+                for servicinhos in servico:
+                    if nomeprodserv == servicinhos[0]:
                         servico.clear()
 
                         print('Atualização feita com sucesso!')
