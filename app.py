@@ -1,6 +1,3 @@
-# Menu principal
-
-# Dados do usuário
 dados_nome = []
 dados_email = []
 dados_senha = []
@@ -161,3 +158,73 @@ while True:
 
         elif opcao_usuario == 5:
             break
+    # Menu clientes
+    elif tipousuario == 2:
+        clientes = []
+        while True:
+            print('\n--- MENU PRINCIPAL ---')
+            print('1 - Cadastrar cliente e pet')
+            print('2 - Listar clientes e pets')
+            print('3 - Buscar pet por nome')
+            print('5 - Sair')
+
+            opcao = input('Escolha uma opção: ')
+
+            # Cadastrar cliente
+            if opcao == '1':
+                nome_cliente = input('Nome do cliente: ')
+                nome_pet = input('Nome do pet: ')
+                tipo_pet = input('Tipo do pet: cachorro, gato, etc: ')
+                servico = input('Serviço desejado: banho, tosa, vacina, etc: ')
+
+                cadastro = [nome_cliente, nome_pet, tipo_pet, servico]
+                clientes.append(cadastro)
+                print('\n Cadastro realizado com sucesso!')
+
+            # Listar todos os clientes e pets
+            elif opcao == '2':
+                if len(clientes) == 0:
+                    print('\n Nenhum cliente cadastrado ainda.')
+                else:
+                    print('\n Lista de clientes e pets:')
+                    for c in clientes:
+                        print(f'Cliente: {c[0]} | Pet: {c[1]} ({c[2]}) | Serviço: {c[3]}')
+
+            # Buscar pet por nome
+            elif opcao == '3':
+                nome_busca = input('Digite o nome do pet: ')
+                encontrado = False
+
+                for c in clientes:
+                    if c[1].lower() == nome_busca.lower():
+                        print('\n Pet encontrado!')
+                        print(f'Dono: {c[0]} | Tipo: {c[2]} | Serviço: {c[3]}')
+                        encontrado = True
+                        break
+
+                if not encontrado:
+                    print('\n Pet não encontrado.')
+
+            # Remover cliente
+            elif opcao == '4':
+                nome_remover = input('Digite o nome do cliente a remover: ')
+                removido = False
+
+                for c in clientes:
+                    if c[0].lower() == nome_remover.lower():
+                        clientes.remove(c)
+                        print('\n Cliente removido com sucesso!')
+                        removido = True
+                        break
+
+                if not removido:
+                    print('\n Cliente não encontrado.')
+
+            # Sair do sistema
+            elif opcao == '5':
+                print('\n Obrigado por usar o Petshop!')
+                break
+
+            # Opção inválida
+            else:
+                print('\n Opção inválida! Tente novamente.')
