@@ -56,9 +56,6 @@ while True:
 
         # Laço de repetição percorre a lista e encontra os dados de acordo com o usuario
 
-        if nomeusuario not in dados_usuario:
-            print('NOME DE USUÁRIO NÃO ENCONTRADO\nTENTE NOVAMENTE')
-            continue
         for i in dados_usuario:
             if i[0] == nomeusuario and i[1] == emailusuario and i[2] == senhausuario:
                 print(f'Usuário encontrado com sucesso!\nNome: {i[0]}\nE-mail: {i[1]}\nTipo: {i[3]}')
