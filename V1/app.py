@@ -3,6 +3,7 @@ dados_usuario = []
 # Produtos e serviços
 produto = []
 servico = []
+profissionais = []
 pets = []
 
 # Sistema funcionando
@@ -58,15 +59,21 @@ while True:
 
         for i in dados_usuario:
             if i[0] == nomeusuario and i[1] == emailusuario and i[2] == senhausuario:
-                print(f'Usuário encontrado com sucesso!\nNome: {i[0]}\nE-mail: {i[1]}\nTipo: {i[3]}')
+                print(f'Usuário encontrado com sucesso!\nNome: {i[0]}\nE-mail: {i[1]}\n')
+                if i[3] == 1:
+                    print(f'Tipo: ADM')
+                elif i[3] == 2:
+                    print(f'Tipo: CLIENTE')
 
             else:
                 print('TENTE NOVAMENTE')
 
         break
-    else:
+    elif menu == 3:
         print('Obrigado por usar nosso sistema\nO PetSertão agradece! Volte sempre!')
         break
+    else:
+        print('INVÁLIDO')
 
 # Sistemas
 while True:
@@ -77,9 +84,11 @@ while True:
             opcao_usuario = int(input("Opções:\n"
                                       "1 - Cadastrar produtos/serviços\n"
                                       "2 - Buscar produto/serviço\n"
-                                      "3 - Atualizar dados\n"
-                                      "4 - Remover dados\n"
-                                      "5 - Sair\n"))
+                                      "3 - Cadastrar profissionais\n"
+                                      "4 - Atualizar dados\n"
+                                      "5 - Remover dados\n"
+                                      "6 - Imprimir dados\n"
+                                      "7 - Sair\n"))
 
             if opcao_usuario == 1:
                 tipo_acao = int(input("1 - Produto\t2 - Serviço\n"))
@@ -95,13 +104,22 @@ while True:
 
                 elif tipo_acao == 2:
                     nomeservico = input('Digite o nome do serviço: ').upper()
+                    descservico = input('Dê uma descrição do serviço: ')
+                    profissional = input('Digite o nome do profissional: ').upper()
+                    for profissional in profissionais:
+                        if profissional[0] == profissional:
+                            print('Profissional encontrada')
+                        else:
+                            print('Profissional nao encontrada')
                     servicovalor = float(input('Digite o valor do produto: '))
-                    horario_func = input('Digite o horário de funcionamento: ')
-
-                    dados_servico = [nomeservico, servicovalor, horario_func]
-
-                    servico.append(dados_servico)
-                    print('Cadastro bem-sucedido!')
+                    hora_func = int(input('Digite a hora: '))
+                    for horario in profissionais:
+                        if horario[3] == hora_func and horario[4] != hora_func:
+                            dados_servico = [nomeservico, servicovalor, hora_func]
+                            servico.append(dados_servico)
+                            print('Cadastro bem-sucedido!')
+                        else:
+                            print('Horário incorreto')
 
             elif opcao_usuario == 2:
                 nomeprodserv = input('Digite o nome do produto: ').upper()
@@ -116,6 +134,20 @@ while True:
                             print(f'Dados do Serviço: {servicinhos[servicinhos.index(nomeprodserv)]}')
 
             elif opcao_usuario == 3:
+                nomeprof = input('Nome do profissional: ').upper()
+                opcupacao = input('Ocupação: ').upper()
+                while True:
+                    hora_prof_init = int(input('Digite a hora: '))
+                    hora_prof_final = int(input('Digite a hora: '))
+                    if (hora_prof_init > 6 and hora_prof_init < 16) and (hora_prof_final > 8 and hora_prof_final < 18):
+                        break
+                    else:
+                        print("FUNCIONAMENTO APENAS DE 6H ÀS 18H\nTENTE NOVAMENTE")
+
+                prof_clinica = [nomeprof, opcupacao, hora_prof_init, hora_prof_final]
+                profissionais.append(prof_clinica)
+
+            elif opcao_usuario == 4:
                 nomeprodserv = input('Digite o nome do produto: ').upper()
                 tipo = int(input('1 - Produto\t2 - Serviço:\n'))
                 if tipo == 1:
@@ -135,7 +167,7 @@ while True:
 
                             print('Atualização feita com sucesso!')
 
-            elif opcao_usuario == 4:
+            elif opcao_usuario == 5:
                 nomeprodserv = input('Digite o nome do produto/serviço: ').upper()
                 tipo = int(input('1 - Produto\t2 - Serviço:\n'))
                 if tipo == 1:
@@ -151,7 +183,18 @@ while True:
 
                             print('Atualização feita com sucesso!')
 
-            elif opcao_usuario == 5:
+            elif opcao_usuario == 6:
+                tipo_do_user = int(input('1 - ADM\t2 - Cliente'))
+                if tipo_do_user == 1:
+                    for tipo_do_user in dados_usuario:
+                        if tipo_do_user[4] == 1:
+                            print(f'Nome do ADM: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
+                elif tipo_do_user == 2:
+                    for tipo_do_user in dados_usuario:
+                        if tipo_do_user[4] == 2:
+                            print(f'Nome do cliente: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
+
+            elif opcao_usuario == 7:
                 break
         # Menu clientes
         elif tipo[3] == 2 and tipo[0] == nomeusuario:
