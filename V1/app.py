@@ -1,22 +1,31 @@
+# Autores:
+# João Henrique de Oliveira Saturnino (Dom-Henrique)
+# Jonas Pereira de Andrade (Jonascz-2004)
+
 dados_usuario = []
 
 # Produtos e serviços
-produto = ['coleira','racão']
+produto = []
 servico = []
 profissionais = []
 pets = []
-preco = [20.0,15.0]
 carrinho = []
+agenda = []
 
 # Sistema funcionando
-print("Bem-vindo ao Pet Sertão\nLugar de muito amor e compaixão")
+print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
 
 while True:
     menu = int(input('Deseja fazer login ou cadastro?\n1 - Cadastro\t2 - Login\t3 - Sair\n'))
     if menu == 1:
         print('OPÇÃO ESCOLHIDA: CADASTRO')
 
-        nomeusuario = input('Digite o seu nome de usuário: ').lower()
+        while True:
+            nomeusuario = input('Digite o seu nome de usuário: ').lower()
+            if len(nomeusuario) >= 3:
+                break
+            else:
+                print('NOME DE USUÁRIO MUITO CURTO')
         while True:
             emailusuario = input('Digite um e-mail válido: ').lower()
             if '@' in emailusuario and '.com' in emailusuario:
@@ -42,7 +51,12 @@ while True:
     elif menu == 2:
         print('OPÇÃO ESCOLHIDA: LOGIN')
 
-        nomeusuario = input('Digite o seu nome de usuário: ').lower()
+        while True:
+            nomeusuario = input('Digite o seu nome de usuário: ').lower()
+            if len(nomeusuario) >= 3:
+                break
+            else:
+                print('NOME DE USUÁRIO MUITO CURTO')
         while True:
             emailusuario = input('Digite um e-mail válido: ').lower()
             if '@' in emailusuario and '.com' in emailusuario:
@@ -226,14 +240,14 @@ while True:
 
             elif opcao_usuario == 8:
                 break
+            
         # Menu clientes
         elif tipo[3] == 2 and tipo[0] == nomeusuario:
             while True:
                 print('1 - Cadastrar meu pet (só vale 1)')
-                print('2 - Meu pet')
-                print('3 - comprar produto')
-                print('4 - agendar serviço')
-                print('5- sair')
+                print('2 - Comprar produto')
+                print('3 - Agendar serviço')
+                print('4 - Sair')
 
                 opcao = int(input('Escolha uma opção: '))
 
@@ -241,40 +255,69 @@ while True:
                 if opcao == 1:
                     nome_pet = input('Nome do pet: ').lower()
                     tipo_pet = input('Tipo do pet: cachorro, gato, etc: ').lower()
-                    servico = input('Serviço desejado: banho, tosa, vacina, etc: ').lower()
+                    sexo = input('Sexo: ').lower()
 
-                    cadastro_pet = [nome_pet, tipo_pet, servico]
+                    cadastro_pet = [nome_pet, tipo_pet, sexo]
                     pets.append(cadastro_pet)
                     print('\n Cadastro realizado com sucesso!')
+                    print(f'Nome do pet: {nome_pet}\nTipo: {tipo_pet}\nSexo: {sexo}')
 
                 # meu pet
-                elif opcao == 2:
-                    indice_usuario = tipo.index(nomeusuario)
-                    print(f'Pet do cliente {nomeusuario}: {pets[indice_usuario]}\n')
 
                 # comprar produto
-                elif opcao == 3:
+                elif opcao == 2:
                     while True:
-                        for i in range(len(produto)):
-                           print(f'Produtos: {produto[i]} - R${preco[i]}')
+                        produtos_cad = len(produto)
+                        
+                        if produtos_cad == 0:
+                            print('LISTA DE PRODUTOS VAZIA\nAGUARDE PARA MAIS NOVIDADES!')
+                            break
+                        else:
+                            for m in produto:
+                                print(f'Produto: {m[0]}\nPreço: R${m[1]}\nQuantidade disponível: {m[2]}')
 
+                        escolha = input("\nDigite o nome do produto que deseja comprar\nDIGITE 'SAIR' PARA SAIR\n").upper()
 
-                        escolha = input("\nDigite o número do produto que deseja comprar (ou 'sair' para finalizar): ")
-
-                        if escolha == "sair":
-                                break
-
-
-
+                        if escolha == 'SAIR':
+                            break
+                        
+                        else:
+                            for n in produto:
+                                if n[0] == escolha:
+                                    carrinho.append(n[0])
 
 
                 # agendar serviço
-                #elif opcao == 4:
+                elif opcao == 3:
+                    while True:
+                        serv_desejado = input('Nome do serviço desejado: ').upper()
+                        
+                        if len(servico) == 0:
+                            print('LISTA DE SERVIÇOS VAZIA\nAGUARDE PARA MAIS NOVIDADES!')
+                            break
+                        else:
+                            for m in servico:
+                                print(f'Serviço: {m[0]}\nPreço: R${m[1]}\nHorário disponível: {m[2]}')
 
+                        escolha = input("\nDigite o nome do serviço que deseja contratar\nDIGITE 'SAIR' PARA SAIR\n").upper()
+                        hora_escolha = int(input('Digite a hora que deseja realizar o serviço: '))
+
+                        if escolha == 'SAIR':
+                            break
+                        
+                        else:
+                            for n in servico:
+                                if n[3] <= hora_escolha:
+                                    if n[0] == escolha:
+                                        carrinho.append(n[0])
+                                else:
+                                    print('HORÁRIO INDISPONÍVEL')
                 # sair
-                #elif opcao == 5:
-                   #break
+                elif opcao == 4:
+                    print('OBRIGADO POR USAR O NOSSO SISTEMA!')
+                    quit()
 
                 # Opção inválida
                 else:
-                    print('\n Opção inválida! Tente novamente.')
+                    print('OPÇÃO INVÁLIDA\nTENTE NOVAMENTE')
+                    
