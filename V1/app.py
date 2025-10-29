@@ -1,10 +1,12 @@
 dados_usuario = []
 
 # Produtos e serviços
-produto = []
+produto = ['coleira','racão']
 servico = []
 profissionais = []
 pets = []
+preco = [20.0,15.0]
+carrinho = []
 
 # Sistema funcionando
 print("Bem-vindo ao Pet Sertão\nLugar de muito amor e compaixão")
@@ -229,12 +231,14 @@ while True:
             while True:
                 print('1 - Cadastrar meu pet (só vale 1)')
                 print('2 - Meu pet')
-                print('5 - Sair')
+                print('3 - comprar produto')
+                print('4 - agendar serviço')
+                print('5- sair')
 
-                opcao = input('Escolha uma opção: ')
+                opcao = int(input('Escolha uma opção: '))
 
                 # Cadastrar cliente
-                if opcao == '1':
+                if opcao == 1:
                     nome_pet = input('Nome do pet: ').lower()
                     tipo_pet = input('Tipo do pet: cachorro, gato, etc: ').lower()
                     servico = input('Serviço desejado: banho, tosa, vacina, etc: ').lower()
@@ -243,18 +247,33 @@ while True:
                     pets.append(cadastro_pet)
                     print('\n Cadastro realizado com sucesso!')
 
-                # Listar pets
-                elif opcao == '2':
+                # meu pet
+                elif opcao == 2:
                     indice_usuario = tipo.index(nomeusuario)
                     print(f'Pet do cliente {nomeusuario}: {pets[indice_usuario]}\n')
 
-                # Remover cliente
-                elif opcao == '4':
-                    pass
-                # Sair do sistema
-                elif opcao == '5':
-                    print('\n Volte sempre ao Pet Sertão!')
-                    break
+                # comprar produto
+                elif opcao == 3:
+                    while True:
+                        for i in range(len(produto)):
+                           print(f'Produtos: {produto[i]} - R${preco[i]}')
+
+
+                        escolha = input("\nDigite o número do produto que deseja comprar (ou 'sair' para finalizar): ")
+
+                        if escolha == "sair":
+                                break
+
+
+
+
+
+                # agendar serviço
+                #elif opcao == 4:
+
+                # sair
+                #elif opcao == 5:
+                   #break
 
                 # Opção inválida
                 else:
