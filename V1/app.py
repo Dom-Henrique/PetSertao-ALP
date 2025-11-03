@@ -238,12 +238,12 @@ while True:
                             tipo_do_user = int(input('1 - ADM\t2 - Cliente'))
                             if tipo_do_user == 1:
                                 for tipo_do_user in dados_usuario:
-                                    if tipo_do_user[4] == 1:
-                                        print(f'Nome do ADM: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
+                                    if tipo_do_user[3] == 1:
+                                        print(f'Nome do ADM: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}\n----------')
                             elif tipo_do_user == 2:
                                 for tipo_do_user in dados_usuario:
-                                    if tipo_do_user[4] == 2:
-                                        print(f'Nome do cliente: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
+                                    if tipo_do_user[3] == 2:
+                                        print(f'Nome do cliente: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}\n----------')
 
                         elif opcao_usuario == 8:
                             break
