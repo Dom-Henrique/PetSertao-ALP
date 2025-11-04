@@ -1,12 +1,12 @@
 dados_usuario = [['dom', 'd@.com', '123456789', 1], ['jonas', 'j@.com', '28032004', 2]]
 
 # Produtos e serviços
-produto = [['coleira', 'cachorro', 25, 20]]
+produto = [['COLEIRA', 'CACHORRO', 25, 20]]
 servico = [['banho',50],['tosa completa', 70],['tosa bb',50]]
-profissionais = [['jonas'], ['dh']]
-pets = [['spyke'], ['nina'],['bob']]
-carrinho = [['coleira'], ['ração']]
-agenda = [['banho'], ['tosa completa']]
+profissionais = []
+pets = [['spyke']]
+carrinho = [['coleira']]
+agenda = [['banho']]
 pets_venda = [['ZEUS', 'cachorro', 10, 'masculino']]
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
@@ -269,12 +269,11 @@ while True:
                         if opcao == 1:
                             nome_pet = input('Nome do pet: ').lower()
                             tipo_pet = input('Tipo do pet: cachorro, gato, etc: ').lower()
-                            sexo = input('Sexo: ').lower()
 
-                            cadastro_pet = [nome_pet, tipo_pet, sexo]
+                            cadastro_pet = [nome_pet, tipo_pet]
                             pets.append(cadastro_pet)
                             print('\n Cadastro realizado com sucesso!')
-                            print(f'Nome do pet: {nome_pet}\nTipo: {tipo_pet}\nSexo: {sexo}')
+                            print(f'Nome do pet: {nome_pet}\nTipo: {tipo_pet}\n')
 
                         # comprar produto
                         elif opcao == 2:
@@ -287,13 +286,24 @@ while True:
                                 else:
                                     for m in produto:
                                         print(f'Produto: {m[0]}\nCategoria: {m[1]}\nPreço: R${m[2]}\nQuantidade disponível: {m[3]}')
-                                    categoria_cliente = input('Digite a categoria do produto: ').upper()
-                                    for c in produto:
-                                        if categoria_cliente == c[1]:
-                                            print(produto[c])
+                                        
+                                        while True:
+                                            categoria_cliente = input('Digite a categoria do produto: ').upper()
+                                            for c in produto:
+                                                if categoria_cliente == c[1]:
+                                                    print(c)
+                                                else:
+                                                    print('CATEGORIA INEXISTENTE')
+                                                    
+                                            deseja_sair = int(input('Deseja sair?\n1 - Sim\t2 - Não'))
+                                            if deseja_sair == 1:
+                                                break
+                                            elif deseja_sair == 2:
+                                                continue
+                                            else:
+                                                print('OPÇÃO INVÁLIDA')
 
-                                escolha = input(
-                                    "\nDigite o nome do produto que deseja comprar\nDIGITE 'SAIR' PARA SAIR\n").upper()
+                                escolha = input("\nDigite o nome do produto que deseja comprar\nDIGITE 'SAIR' PARA SAIR\n").upper()
 
                                 if escolha == 'SAIR':
                                     break
@@ -301,8 +311,9 @@ while True:
                                 else:
                                     for n in produto:
                                         if n[0] == escolha:
-                                            carrinho.append(n[0])
-                                            produto.append(n[1])
+                                            minhas_compras = [n]
+                                            carrinho.append(minhas_compras)
+                                            print('ADICIONADO AO CARRINHO!')
 
                         # agendar serviço
                         elif opcao == 3:
@@ -330,6 +341,7 @@ while True:
                                                 carrinho.append(n[0])
                                         else:
                                             print('HORÁRIO INDISPONÍVEL')
+                        
                         # comprar pet
                         elif opcao == 4:
                             while True:
@@ -348,13 +360,6 @@ while True:
                                         if code[0] == codigo_pet_compra:
                                             carrinho.append(code[1])
                                             print('Compra realizada com sucesso!')
-
-                        elif opcao == 5:
-                            indice_usuario = dados_cadastro.index(nomeusuario)
-                            if len(carrinho) != 0:
-                                print(carrinho[indice_usuario])
-                            else:
-                                print('CARRINHO VAZIO')
 
                         # sair
                         elif opcao == 6:
