@@ -1,13 +1,13 @@
-dados_usuario = []
+dados_usuario = [['dom', 'd@.com', '123456789', 1], ['jonas', 'j@.com', '28032004', 2]]
 
 # Produtos e serviços
-produto = []
-servico = []
-profissionais = []
-pets = []
-carrinho = []
-agenda = []
-pets_venda = []
+produto = [['coleira', 'cachorro', 25, 20]]
+servico = [['banho',50],['tosa completa', 70],['tosa bb',50]]
+profissionais = [['jonas'], ['dh']]
+pets = [['spyke'], ['nina'],['bob']]
+carrinho = [['coleira'], ['ração']]
+agenda = [['banho'], ['tosa completa']]
+pets_venda = [['ZEUS', 'cachorro', 10, 'masculino']]
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
 
@@ -74,33 +74,35 @@ while True:
 
             for tipo in dados_usuario:
                 # Menu ADM
-                if tipo[3] == 1 and tipo[0] == nomeusuario:
+                if tipo[3] == 1 and tipo[1] == emailusuario:
                     while True:
                         print('SISTEMA DE GERENCIAMENTO DE PRODUTOS E SERVIÇOS\n\tPETSERTÃO')
                         opcao_usuario = int(input("Opções:\n"
-                                                "1 - Cadastrar produtos/serviços ou pet\n"
-                                                "2 - Buscar produto/serviço ou pet\n"
-                                                "3 - Cadastrar profissionais\n"
-                                                "4 - Atualizar dados de profissional\n"
-                                                "5 - Atualizar dados de produto e serviço ou pet\n"
-                                                "6 - Remover dados\n"
-                                                "7 - Imprimir dados\n"
-                                                "8 - Sair\n"))
+                                                  "1 - Cadastrar produtos/serviços ou pet\n"
+                                                  "2 - Buscar produto/serviço ou pet\n"
+                                                  "3 - Cadastrar profissionais\n"
+                                                  "4 - Atualizar dados de profissional\n"
+                                                  "5 - Atualizar dados de produto e serviço ou pet\n"
+                                                  "6 - Remover dados\n"
+                                                  "7 - Imprimir dados\n"
+                                                  "8 - Sair\n"))
 
                         if opcao_usuario == 1:
-                            tipo_acao = int(input("1 - Produto\t2 - Serviço\n3 - Pet"))
+                            tipo_acao = int(input("1 - Produto 2 - Serviço 3 - Pet"))
                             if tipo_acao == 1:
                                 nomeproduto = input('Digite o nome do produto: ').upper()
+                                categoria_pet = input('Digite o categoria de animal do produto: ').upper()
                                 produtovalor = float(input('Digite o valor do produto: '))
                                 qtnd_disponivel = int(input('Digite a quantidade no estoque: '))
 
-                                dados_produto = [nomeproduto, produtovalor, qtnd_disponivel]
+                                dados_produto = [nomeproduto, categoria_pet, produtovalor, qtnd_disponivel]
 
                                 produto.append(dados_produto)
                                 print('Cadastro bem-sucedido!')
 
                             elif tipo_acao == 2:
                                 nomeservico = input('Digite o nome do serviço: ').upper()
+                                categoria_pet = input('Digite o categoria de animal do produto: ').upper()
                                 descservico = input('Dê uma descrição do serviço: ')
                                 while True:
                                     profissional = input('Nome do profissional: ').upper()
@@ -116,7 +118,7 @@ while True:
 
                                                 for horario in profissionais:
                                                     if horario[2] <= hora_func and horario[3] > hora_func:
-                                                        dados_servico = [nomeservico, servicovalor, hora_func]
+                                                        dados_servico = [nomeservico, categoria_pet, hora_func]
                                                         servico.append(dados_servico)
                                                         print('SERVIÇO CADASTRADO COM SUCESSO!')
                                                         controle2 = True
@@ -137,7 +139,7 @@ while True:
                                 dados_pet = [identificador, raca_pet, valor_pet, qtnd_disponivel]
                                 pets_venda.append(dados_pet)
                                 continue
-                                
+
                         elif opcao_usuario == 2:
                             nomeprodserv = input('Digite o nome do produto, serviço ou pet: ').upper()
                             tipo = int(input('1 - Produto\t2 - Serviço:\n3 - Pets'))
@@ -145,23 +147,23 @@ while True:
                                 for produtinhos in produto:
                                     if nomeprodserv == produtinhos[0]:
                                         print(f'Dados do produto: {produtinhos[produtinhos.index(nomeprodserv)]}')
-                                else:
-                                    print('NÃO ENCONTRADO')
-                                    
+                                    else:
+                                        print('NÃO ENCONTRADO')
+
                             elif tipo == 2:
                                 for servicinhos in servico:
                                     if nomeprodserv == servicinhos[0]:
                                         print(f'Dados do Serviço: {servicinhos[servicinhos.index(nomeprodserv)]}')
-                                else:
-                                    print('NÃO ENCONTRADO')
-                                    
-                            elif tipo ==3:
+                                    else:
+                                        print('NÃO ENCONTRADO')
+
+                            elif tipo == 3:
                                 for petsinhos in pets_venda:
                                     if petsinhos[0] == nomeprodserv:
                                         print(f'Dados do pet: {petsinhos[petsinhos.index(nomeprodserv)]}')
-                                else:
-                                    print('NÃO ENCONTRADO')
-                                    
+                                    else:
+                                        print('NÃO ENCONTRADO')
+
                         elif opcao_usuario == 3:
                             nomeprof = input('Nome do profissional: ').upper()
                             opcupacao = input('Ocupação: ').upper()
@@ -198,23 +200,26 @@ while True:
                                 for produtinhos in produto:
                                     if nomeprodserv == produtinhos[0]:
                                         produtinhos[0] = input('Digite o nome do produto: ').upper()
-                                        produtinhos[1] = float(input('Digite o valor do produto: '))
-                                        produtinhos[2] = int(input('Digite a quantidade disponível: '))
+                                        produtinhos[1] = input('Digite a categoria: ').upper()
+                                        produtinhos[2] = float(input('Digite o valor do produto: '))
+                                        produtinhos[3] = int(input('Digite a quantidade disponível: '))
 
                                         print('Atualização feita com sucesso!')
                             elif tipo == 2:
                                 for servicinhos in servico:
                                     if nomeprodserv == servicinhos[0]:
                                         servicinhos[0] = input('Digite o nome do serviço: ').upper()
-                                        servicinhos[1] = float(input('Digite o valor do serviço: '))
-                                        servicinhos[2] = int(input('Digite o horário de funcionamento: '))
+                                        servicinhos[1] = input('Digite a categoria: ').upper()
+                                        servicinhos[2] = float(input('Digite o valor do serviço: '))
+                                        servicinhos[3] = int(input('Digite o horário de funcionamento: '))
 
                                         print('Atualização feita com sucesso!')
-                                        
+
                             elif tipo == 3:
                                 for petsinhos in pets_venda:
                                     if petsinhos[1] == nomeprodserv:
-                                        petsinhos[1] = input('Digite a espécie do pet: ').upper()
+                                        petsinhos[0] = input('Digite a espécie do pet: ').upper()
+                                        petsinhos[1] = int(input('Digite a categoria: ').upper())
                                         petsinhos[2] = float(input('Digite o valor do pet: '))
                                         petsinhos[3] = int(input('Digite a quantidade disponível: '))
 
@@ -239,17 +244,17 @@ while True:
                             if tipo_do_user == 1:
                                 for tipo_do_user in dados_usuario:
                                     if tipo_do_user[3] == 1:
-                                        print(f'Nome do ADM: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}\n----------')
+                                        print(f'Nome do ADM: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
                             elif tipo_do_user == 2:
                                 for tipo_do_user in dados_usuario:
                                     if tipo_do_user[3] == 2:
-                                        print(f'Nome do cliente: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}\n----------')
+                                        print(f'Nome do cliente: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
 
                         elif opcao_usuario == 8:
                             break
 
                 # Menu clientes
-                elif tipo[3] == 2 and tipo[0] == nomeusuario:
+                elif tipo[3] == 2 and tipo[1] == emailusuario:
                     while True:
                         print('1 - Cadastrar meu pet (só vale 1)')
                         print('2 - Comprar produto')
@@ -281,7 +286,11 @@ while True:
                                     break
                                 else:
                                     for m in produto:
-                                        print(f'Produto: {m[0]}\nPreço: R${m[1]}\nQuantidade disponível: {m[2]}')
+                                        print(f'Produto: {m[0]}\nCategoria: {m[1]}\nPreço: R${m[2]}\nQuantidade disponível: {m[3]}')
+                                    categoria_cliente = input('Digite a categoria do produto: ').upper()
+                                    for c in produto:
+                                        if categoria_cliente == c[1]:
+                                            print(produto[c])
 
                                 escolha = input(
                                     "\nDigite o nome do produto que deseja comprar\nDIGITE 'SAIR' PARA SAIR\n").upper()
@@ -331,8 +340,9 @@ while True:
                                 else:
                                     for p in pets_venda:
                                         if p[1] == pets_disponiveis and p[3] != 0:
-                                            print(f'Identificador: {p[0]}\nEspécie: {p[1]}\n Preço: {p[2]}\nQuantidade: {p[3]}')
-                                            
+                                            print(
+                                                f'Identificador: {p[0]}\nEspécie: {p[1]}\n Preço: {p[2]}\nQuantidade: {p[3]}')
+
                                     codigo_pet_compra = int(input('Insira o código do pet que você deseja comprar: '))
                                     for code in pets_venda:
                                         if code[0] == codigo_pet_compra:
@@ -345,7 +355,7 @@ while True:
                                 print(carrinho[indice_usuario])
                             else:
                                 print('CARRINHO VAZIO')
-                            
+
                         # sair
                         elif opcao == 6:
                             print('OBRIGADO POR USAR O NOSSO SISTEMA!')
