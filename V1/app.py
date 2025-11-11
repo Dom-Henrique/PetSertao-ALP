@@ -7,7 +7,7 @@ profissionais = []
 pets = [['spyke']]
 carrinho = [['coleira']]
 agenda = [['banho']]
-pets_venda = [['ZEUS', 'cachorro', 10, 'masculino']]
+pets_venda = [['ZEUS', 'cachorro', 10]]
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
 
@@ -372,3 +372,7 @@ while True:
     elif menu == 3:
         print('OBRIGADO POR USAR O PETSERTÃO!')
         break
+
+    else:
+        print('OPÇÃO INVÁLIDA')
+        continue
