@@ -1,0 +1,1 @@
+Erros propositais para o senhor explicar na hora da aula de hoje.
