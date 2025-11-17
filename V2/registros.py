@@ -11,7 +11,9 @@ def productReg(produto):
     produto['Valor'].append(produtovalor)
     produto['Quantidade'].append(qtnd_disponivel)
     
-    print('Cadastro bem-sucedido!')
+    print('CADASTRO FEITO COM SUCESSO!')
+    
+    return produto
     
 def servReg(servico, profissionais):
     nomeservico = input('Digite o nome do serviço: ').upper()
@@ -49,7 +51,9 @@ def servReg(servico, profissionais):
             print('PROFISSIONAL NÃO ENCONTRADO(A)')
             break
     
-    print('Cadastro bem-sucedido!')
+    print('CADASTRO FEITO COM SUCESSO!')
+    
+    return servico
     
 def petsVendaReg(pets_venda):
     identificador = int(input('Identificador do pet: '))
@@ -63,3 +67,24 @@ def petsVendaReg(pets_venda):
     pets_venda['Quantidade Disponível'].append(qtnd_disponivel)
     
     print('CADASTRO FEITO COM SUCESSO!')
+    
+    return pets_venda
+    
+def profissionaisReg(profissionais):
+    nomeprof = input('Nome do profissional: ').upper()
+    opcupacao = input('Ocupação: ').upper()
+    while True:
+        hora_prof_init = int(input('Digite a hora de chegada: '))
+        hora_prof_final = int(input('Digite a hora de saída: '))
+        if (hora_prof_init > 6 and hora_prof_init < 16) and (
+                hora_prof_final > 8 and hora_prof_final < 18):
+            break
+        else:
+            print("FUNCIONAMENTO APENAS DE 6H ÀS 18H\nTENTE NOVAMENTE")
+            
+            profissionais['Nome do profissional'].append(nomeprof)
+            profissionais['Ocupação'].append(opcupacao)
+            profissionais['Hora de entrada'].append(hora_prof_init)
+            profissionais['Hora de saída'].append(hora_prof_final)
+            
+            print('CADASTRO FEITO COM SUCESSO!')

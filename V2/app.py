@@ -1,11 +1,14 @@
-from V2.usuarios import *
+from buscas import *
+from usuarios import *
+from registros import *
+from atualizardados import *
 
 dados_usuario = {'Nome de Usuário': [], 'E-mail': [], 'Senha': [], 'Tipo de usuário': []}
 
 # Produtos e serviços
 produto = {'Nome do produto': [], 'Descrição do produto': [], 'Categoria': [], 'Valor': [], 'Quantidade': []}
 servico = {'Nome do serviço': [], 'Descrição do serviço': [], 'Categoria': [], 'Profissional': [], 'Valor': [], 'Horário': []}
-profissionais = {'Nome do profissional': []}
+profissionais = {'Nome do profissional': [], 'Ocupação': [], 'Hora de entrada': [], 'Hora de saída': []}
 pets = []
 carrinho = []
 agenda = []
