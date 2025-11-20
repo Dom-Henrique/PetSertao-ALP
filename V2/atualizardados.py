@@ -21,3 +21,21 @@ def atualizarProduto(produto, nomeprodserv):
                 produtinhos[1] = input('Digite a categoria: ').upper()
                 produtinhos[2] = float(input('Digite o valor do produto: '))
                 produtinhos[3] = int(input('Digite a quantidade disponível: '))
+
+def atualizarServico(servico, nomeprodserv):
+    for servicinhos in servico.values():
+        for i in servicinhos:
+            if nomeprodserv == servico['Nome do produto'][i]:
+                servicinhos[0] = input('Digite o nome do produto: ').upper()
+                servicinhos[1] = input('Digite a categoria: ').upper()
+                servicinhos[2] = float(input('Digite o valor do produto: '))
+                servicinhos[3] = int(input('Digite a quantidade disponível: '))
+
+def atualizarPetsVenda(pets_venda, nomeprodserv):
+    for petsinhos in pets_venda.values():
+        for i in petsinhos:
+            if nomeprodserv == pets_venda['Nome do produto'][i]:
+                petsinhos[0] = input('Digite o nome do produto: ').upper()
+                petsinhos[1] = input('Digite a categoria: ').upper()
+                petsinhos[2] = float(input('Digite o valor do produto: '))
+                petsinhos[3] = int(input('Digite a quantidade disponível: '))
