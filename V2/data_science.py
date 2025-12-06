@@ -28,3 +28,4 @@ def Abrir_Relatorio():
     with open('Tabelas/DadosUsuario.csv', 'r') as file:
         leitura_arquivo = file.read()
         print(leitura_arquivo)
+        
