@@ -3,6 +3,7 @@ from usuarios import *
 from registros import *
 from atualizardados import *
 from remocao import *
+import pandas as pd
 
 dados_usuario = {'Nome de usuário': ['domh'], 'E-mail': ['d@.com'], 'Senha': ['123456789'], 'Tipo de usuário': [1]}
 
@@ -14,6 +15,9 @@ pets = []
 carrinho = []
 agenda = []
 pets_venda = {'Identificador': [], 'Raça': [], 'Valor': [], 'Quantidade disponível': []}
+dados_usuario_df = pd.DataFrame('DadosUsuario')
+dados_usuario_df.to_csv('Tabelas/DadosUsuario.csv')
+
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
 
