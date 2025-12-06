@@ -1,3 +1,5 @@
+import cv2
+
 def userRegister(dados_usuario, nomeusuario, emailusuario, senhausuario, tipousuario):
     dados_usuario['Nome de usuário'].append(nomeusuario)
     dados_usuario['E-mail'].append(emailusuario)
@@ -25,3 +27,8 @@ def userLogin(dados_usuario, emailusuario, senhausuario):
                         break
         else:
             print('E-MAIL NÃO ENCONTRADO')
+            
+def RecogFacial():
+    recog_facial = cv2.CascadeClassifier("haarcascade_frontalface_default.xml") # Base de dados para as funcionalidades do reconhecimento facial
+    
+    
