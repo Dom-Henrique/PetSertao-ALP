@@ -4,10 +4,15 @@ from registros import *
 from atualizardados import *
 from remocao import *
 from data_science import *
+from capturar_rosto import *
 #from capturar_rosto import *
 import pandas as pd
+import speech_recognition as ar
+from random import randint
+import os
+from time import sleep
 
-dados_usuario = {'Nome de usuário': ['domh'], 'E-mail': ['d@.com'], 'Senha': ['123456789'], 'Tipo de usuário': [1]}
+dados_usuario = {'Nome de usuário': ['domh'], 'E-mail': ['d@.com'], 'Senha': ['123456789'], 'Tipo de usuário': [1], 'ID': ['453740']}
 
 # Produtos e serviços
 produto = {'Nome do produto': [], 'Descrição do produto': [], 'Categoria': [], 'Valor': [], 'Quantidade': []}
@@ -23,11 +28,17 @@ produtos_df = pd.DataFrame(produto)
 servico_df = pd.DataFrame(servico)
 pets_df = pd.DataFrame(pets)
 profissionais_df = pd.DataFrame(profissionais)
-dados_usuario_df.to_csv('DadosUsuario.csv')
-produtos_df.to_csv('ProdutosCadastrados.csv')
-servico_df.to_csv('ServicosCadastrados.csv')
-pets_df.to_csv('PetsVenda.csv')
-profissionais_df.to_csv('ProfissionaisSistemas.csv')
+
+if os.path.exists('Tabelas'):
+    pass
+else:
+    os.mkdir('Tabelas')
+
+dados_usuario_df.to_csv('Tabelas/DadosUsuario.csv')
+produtos_df.to_csv('Tabelas/ProdutosCadastrados.csv')
+servico_df.to_csv('Tabelas/ServicosCadastrados.csv')
+pets_df.to_csv('Tabelas/PetsVenda.csv')
+profissionais_df.to_csv('Tabelas/ProfissionaisSistemas.csv')
 
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
@@ -56,10 +67,18 @@ while True:
                 print('SENHA MUITO CURTA')
             else:
                 break
+            
+        print('CAPTURANDO SUA FOTO...')
+        validacao(emailusuario)
+        
+        print('GERANDO O SEU ID...')
+        sleep(2)
+        id_usuario = randint(100000, 999999)
+        print(f'ID DE {nomeusuario}: {id_usuario}')
 
         tipousuario = int(input('Qual o seu tipo de usuário?\n1 - Administrador\t2 - Cliente\n'))
 
-        userRegister(dados_usuario, nomeusuario, emailusuario, senhausuario, tipousuario)
+        userRegister(dados_usuario, nomeusuario, emailusuario, senhausuario, tipousuario, id_usuario)
         continue
 
     elif menu == 2:
