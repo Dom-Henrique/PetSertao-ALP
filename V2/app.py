@@ -3,6 +3,8 @@ from usuarios import *
 from registros import *
 from atualizardados import *
 from remocao import *
+from data_science import *
+#from capturar_rosto import *
 import pandas as pd
 
 dados_usuario = {'Nome de usuário': ['domh'], 'E-mail': ['d@.com'], 'Senha': ['123456789'], 'Tipo de usuário': [1]}
@@ -15,8 +17,17 @@ pets = []
 carrinho = []
 agenda = []
 pets_venda = {'Identificador': [], 'Raça': [], 'Valor': [], 'Quantidade disponível': []}
-dados_usuario_df = pd.DataFrame('DadosUsuario')
-dados_usuario_df.to_csv('Tabelas/DadosUsuario.csv')
+# Tabelas utilizando Pandas
+dados_usuario_df = pd.DataFrame(dados_usuario)
+produtos_df = pd.DataFrame(produto)
+servico_df = pd.DataFrame(servico)
+pets_df = pd.DataFrame(pets)
+profissionais_df = pd.DataFrame(profissionais)
+dados_usuario_df.to_csv('DadosUsuario.csv')
+produtos_df.to_csv('ProdutosCadastrados.csv')
+servico_df.to_csv('ServicosCadastrados.csv')
+pets_df.to_csv('PetsVenda.csv')
+profissionais_df.to_csv('ProfissionaisSistemas.csv')
 
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
@@ -142,16 +153,12 @@ while True:
                             print('ATUALIZAÇÃO FEITA COM SUCESSO')
 
                     elif opcao_usuario == 7:
-                        tipo_do_user = int(input('1 - ADM\t2 - Cliente'))
-                        if tipo_do_user == 1:
-                            for tipo_do_user in dados_usuario:
-                                if tipo_do_user[3] == 1:
-                                    print(f'Nome do ADM: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
-                        elif tipo_do_user == 2:
-                            for tipo_do_user in dados_usuario:
-                                if tipo_do_user[3] == 2:
-                                    print(f'Nome do cliente: {tipo_do_user[0]}\nE-mail: {tipo_do_user[1]}')
-
+                        Usuarios_Info(dados_usuario_df)
+                        relatorio_abrir = int(input('Deseja abrir o relatório?\n1 - S\t2 - N\n'))
+                        if relatorio_abrir == 1:
+                            Abrir_Relatorio()
+                        elif relatorio_abrir == 2:
+                            continue
                     elif opcao_usuario == 8:
                         break
 
