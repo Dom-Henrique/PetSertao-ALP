@@ -27,8 +27,3 @@ def userLogin(dados_usuario, emailusuario, senhausuario):
                         break
         else:
             print('E-MAIL NÃO ENCONTRADO')
-            
-def RecogFacial():
-    recog_facial = cv2.CascadeClassifier("haarcascade_frontalface_default.xml") # Base de dados para as funcionalidades do reconhecimento facial
-    
-    
