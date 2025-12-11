@@ -21,7 +21,7 @@ profissionais = {'Nome do profissional': [], 'Ocupação': [], 'Hora de entrada'
 pets = []
 carrinho = []
 agenda = []
-pets_venda = {'Identificador': [], 'Raça': [], 'Valor': [], 'Quantidade disponível': []}
+pets_venda = {'Identificador': [40028922], 'Raça': ['canina'], 'Valor': [10], 'Quantidade disponível': [50]}
 # Tabelas utilizando Pandas
 dados_usuario_df = pd.DataFrame(dados_usuario)
 produtos_df = pd.DataFrame(produto)
@@ -34,11 +34,11 @@ if os.path.exists('Tabelas'):
 else:
     os.mkdir('Tabelas')
 
-dados_usuario_df.to_csv('Tabelas/DadosUsuario.csv')
-produtos_df.to_csv('Tabelas/ProdutosCadastrados.csv')
-servico_df.to_csv('Tabelas/ServicosCadastrados.csv')
-pets_df.to_csv('Tabelas/PetsVenda.csv')
-profissionais_df.to_csv('Tabelas/ProfissionaisSistemas.csv')
+dados_usuario_df.to_csv('Tabelas/DadosUsuario.csv', index=False)
+produtos_df.to_csv('Tabelas/ProdutosCadastrados.csv', index=False)
+servico_df.to_csv('Tabelas/ServicosCadastrados.csv', index=False)
+pets_df.to_csv('Tabelas/PetsVenda.csv', index=False)
+profissionais_df.to_csv('Tabelas/ProfissionaisSistemas.csv', index=False)
 
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
