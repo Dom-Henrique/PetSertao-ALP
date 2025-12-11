@@ -6,7 +6,7 @@ def Usuarios_Info(dados_usuario_df):
     
     while True:
         print('DESEJA FILTRAR POR ALGUMA CONDIÇÃO?')
-        option = int(input('1 - NOMES DE USUÁRIO\n2 - E-MAILS\n3 - NOME ESPECÍFICO\n4 - E-MAIL ESPECÍFICO\n\n'))
+        option = int(input('1 - NOMES DE USUÁRIO\n2 - E-MAILS\n3 - NOME ESPECÍFICO\n4 - E-MAIL ESPECÍFICO\n5 - SAIR\n'))
         
         if option == 1:
             print(dados_usuario_df['Nome de usuário'])
@@ -24,11 +24,10 @@ def Usuarios_Info(dados_usuario_df):
             if email_desejado in dados_usuario_df:
                 print(dados_usuario_df.loc['E-mail'] == email_desejado)
                 print(dados_usuario_df.loc['E-mail'].describe() == email_desejado)
-        else:
-            print('OPÇÃO INVÁLIDA')
+        elif option == 5:
             break
                 
 def Abrir_Relatorio():
-    with open('DadosUsuario.csv', 'r') as file:
+    with open('Tabelas/DadosUsuario.csv', 'r') as file:
         leitura_arquivo = file.read()
         print(leitura_arquivo)
