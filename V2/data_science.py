@@ -1,5 +1,4 @@
 import pandas as pd
-from csv2pdf import convert
 
 def Usuarios_Info(dados_usuario_df):
     print(dados_usuario_df.describe())
