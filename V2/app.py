@@ -67,9 +67,6 @@ while True:
                 print('SENHA MUITO CURTA')
             else:
                 break
-            
-        print('CAPTURANDO SUA FOTO...')
-        validacao(emailusuario)
         
         print('GERANDO O SEU ID...')
         sleep(2)
