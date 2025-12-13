@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def Usuarios_Info(dados_usuario_df):
     print(dados_usuario_df.describe())
@@ -26,7 +27,22 @@ def Usuarios_Info(dados_usuario_df):
         elif option == 5:
             break
                 
-def Abrir_Relatorio():
-    with open('Tabelas/DadosUsuario.csv', 'r') as file:
-        leitura_arquivo = file.read()
-        print(leitura_arquivo)
+def GerarRelatorio(produto, servico, pets_venda, dados_usuario, profissionais):
+    estrutura_dados = input('Relatório desejado: ').lower()
+    if estrutura_dados == 'produtos':
+        produtosDF = pd.DataFrame(produto)
+        produtosDF.to_csv('Tabelas/produtos.csv', index=False)
+    elif estrutura_dados == 'serviços':
+        servicosDF = pd.DataFrame(servico)
+        servicosDF.to_csv('Tabelas/servicos.csv', index=False)
+    elif estrutura_dados == 'pets a venda':
+        pets_vendaDF = pd.DataFrame(pets_venda)
+        pets_vendaDF.to_csv('Tabelas/pets_a_venda.csv', index=False)
+    elif estrutura_dados == 'usuários':
+        usuariosDF = pd.DataFrame(dados_usuario)
+        usuariosDF.to_csv('Tabelas/usuarios.csv', index=False)
+    elif estrutura_dados == 'profissionais':
+        profissionaisDF = pd.DataFrame(profissionais)
+        profissionaisDF.to_csv('Tabelas/profissionais.csv', index=False)
+    else:
+        print('INDISPONÍVEL')
