@@ -4,7 +4,7 @@ from registros import *
 from atualizardados import *
 from remocao import *
 from data_science import *
-from capturar_rosto import *
+from compras import *
 #from capturar_rosto import *
 import pandas as pd
 import speech_recognition as ar
@@ -23,22 +23,6 @@ carrinho = []
 agenda = []
 pets_venda = {'Identificador': [40028922], 'Raça': ['canina'], 'Valor': [10], 'Quantidade disponível': [50]}
 # Tabelas utilizando Pandas
-dados_usuario_df = pd.DataFrame(dados_usuario)
-produtos_df = pd.DataFrame(produto)
-servico_df = pd.DataFrame(servico)
-pets_df = pd.DataFrame(pets)
-profissionais_df = pd.DataFrame(profissionais)
-
-if os.path.exists('Tabelas'):
-    pass
-else:
-    os.mkdir('Tabelas')
-
-dados_usuario_df.to_csv('Tabelas/DadosUsuario.csv', index=False)
-produtos_df.to_csv('Tabelas/ProdutosCadastrados.csv', index=False)
-servico_df.to_csv('Tabelas/ServicosCadastrados.csv', index=False)
-pets_df.to_csv('Tabelas/PetsVenda.csv', index=False)
-profissionais_df.to_csv('Tabelas/ProfissionaisSistemas.csv', index=False)
 
 # Sistema funcionando
 print("BEM-VINDO AO PET SERTÃO\nLUGAR DE MUITO AMOR E COMPAIXÃO")
@@ -112,10 +96,11 @@ while True:
                                                 "5 - Atualizar dados de produto e serviço ou pet\n"
                                                 "6 - Remover dados\n"
                                                 "7 - Imprimir dados\n"
-                                                "8 - Sair\n"))
+                                                "8 - Gerar relatório\n"
+                                                "9 - Sair\n"))
 
                     if opcao_usuario == 1:
-                        tipo_acao = int(input("1 - Produto 2 - Serviço 3 - Pet"))
+                        tipo_acao = int(input("1 - Produto 2 - Serviço 3 - Pet\n"))
                         if tipo_acao == 1:
                             productReg(produto)
 
@@ -144,15 +129,17 @@ while True:
                         atualizarProfissionais(profissionais)
 
                     elif opcao_usuario == 5:
-                        nomeprodserv = input('Digite o nome do produto: ').upper()
-                        tipo = int(input('1 - Produto\t2 - Serviço:\n'))
+                        tipo = int(input('1 - Produto\t2 - Serviço\t3 - Identificador:\n'))
                         if tipo == 1:
+                            nomeprodserv = input('Digite o nome do produto: ').upper()
                             atualizarProduto(produto, nomeprodserv)
                             
                         elif tipo == 2:
+                            nomeprodserv = input('Digite o nome do produto: ').upper()
                             atualizarServico(servico, nomeprodserv)
 
                         elif tipo == 3:
+                            nomeprodserv = int(input('Digite o nome do produto: '))
                             atualizarPetsVenda(pets_venda, nomeprodserv)
 
                     elif opcao_usuario == 6:
@@ -170,12 +157,14 @@ while True:
 
                     elif opcao_usuario == 7:
                         Usuarios_Info(dados_usuario_df)
-                        relatorio_abrir = int(input('Deseja abrir o relatório?\n1 - S\t2 - N\n'))
-                        if relatorio_abrir == 1:
-                            Abrir_Relatorio()
-                        elif relatorio_abrir == 2:
-                            continue
+                        
                     elif opcao_usuario == 8:
+                        if os.path.exists('Tabelas'):
+                            pass
+                        else:
+                            os.mkdir('Tabelas')
+                        GerarRelatorio(produto, servico, pets_venda, dados_usuario, profissionais)
+                    elif opcao_usuario == 9:
                         break
 
             # Menu clientes
@@ -192,13 +181,7 @@ while True:
 
                     # Cadastrar cliente
                     if opcao == 1:
-                        nome_pet = input('Nome do pet: ').lower()
-                        tipo_pet = input('Tipo do pet: cachorro, gato, etc: ').lower()
-
-                        cadastro_pet = [nome_pet, tipo_pet]
-                        pets.append(cadastro_pet)
-                        print('\n Cadastro realizado com sucesso!')
-                        print(f'Nome do pet: {nome_pet}\nTipo: {tipo_pet}\n')
+                        cadastrarMeuPet(pets)
 
                     # comprar produto
                     elif opcao == 2:
@@ -209,36 +192,7 @@ while True:
                                 print('LISTA DE PRODUTOS VAZIA\nAGUARDE PARA MAIS NOVIDADES!')
                                 break
                             else:
-                                for m in produto:
-                                    print(f'Produto: {m[0]}\nCategoria: {m[1]}\nPreço: R${m[2]}\nQuantidade disponível: {m[3]}')
-                                    
-                                    while True:
-                                        categoria_cliente = input('Digite a categoria do produto: ').upper()
-                                        for c in produto:
-                                            if categoria_cliente == c[1]:
-                                                print(c)
-                                            else:
-                                                print('CATEGORIA INEXISTENTE')
-                                                
-                                        deseja_sair = int(input('Deseja sair?\n1 - Sim\t2 - Não'))
-                                        if deseja_sair == 1:
-                                            break
-                                        elif deseja_sair == 2:
-                                            continue
-                                        else:
-                                            print('OPÇÃO INVÁLIDA')
-
-                            escolha = input("\nDigite o nome do produto que deseja comprar\nDIGITE 'SAIR' PARA SAIR\n").upper()
-
-                            if escolha == 'SAIR':
-                                break
-
-                            else:
-                                for n in produto:
-                                    if n[0] == escolha:
-                                        minhas_compras = [n]
-                                        carrinho.append(minhas_compras)
-                                        print('ADICIONADO AO CARRINHO!')
+                                comprar_produto(produto, carrinho)
 
                     # agendar serviço
                     elif opcao == 3:
