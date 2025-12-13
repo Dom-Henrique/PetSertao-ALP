@@ -1,41 +1,53 @@
 def atualizarProfissionais(profissionais):
     profissional = input('Nome do(a) profissional: ').upper()
-    for j in profissionais.values():
-        for i in j:
-            if profissionais['Nome do profissional'][i] == profissional:
-                profissionais['Nome do profissional'][i] = input('Nome do profissional: ').upper()
-                profissionais['Ocupação'][i] = input('Ocupação: ').upper()
-                while True:
-                    profissionais['Nome do profissional'][i] = int(input('Digite a hora de chegada: '))
-                    profissionais['Nome do profissional'][i] = int(input('Digite a hora de saída: '))
-                    if (profissionais['Hora de entrada'][i] > 6 and profissionais['Hora de entrada'][i] < 16) and (profissionais['Hora de saída'][i] > 8 and profissionais['Hora de saída'][i] < 18):
-                        break
-                    else:
-                        print("FUNCIONAMENTO APENAS DE 6H ÀS 18H\nTENTE NOVAMENTE")
+    for i in profissionais.values():
+        if i[0] == profissional:
+            i[0] = input('Nome do profissional: ').upper()
+            i[1] = input('Ocupação: ').upper()
+            while True:
+                i[2] = int(input('Digite a hora de chegada: '))
+                i[3] = int(input('Digite a hora de saída: '))
+                if (i[2] > 6 and i[2] < 16) and (i[3] > 8 and i[3] < 18):
+                    break
+                else:
+                    print("FUNCIONAMENTO APENAS DE 6H ÀS 18H\nTENTE NOVAMENTE")
+        else:
+            print('NÃO ENCONTRADO OU INEXISTENTE')
                         
 def atualizarProduto(produto, nomeprodserv):
-    for produtinhos in produto.values():
-        for i in produtinhos:
-            if nomeprodserv == produto['Nome do produto'][i]:
-                produtinhos[0] = input('Digite o nome do produto: ').upper()
-                produtinhos[1] = input('Digite a categoria: ').upper()
-                produtinhos[2] = float(input('Digite o valor do produto: '))
-                produtinhos[3] = int(input('Digite a quantidade disponível: '))
+    for nomes in produto['Nome do produto']:
+        if nomes == nomeprodserv:
+            indice = produto['Nome do produto'].index(nomes)
+            
+            produto['Nome do produto'][indice] = input('Digite o nome do produto: ').upper()
+            produto['Descrição do produto'][indice] = input('Digite a descrição do produto: ').upper()
+            produto['Categoria'][indice] = input('Digite a categoria: ').upper()
+            produto['Valor'][indice] = input('Digite o valor: ')
+            produto['Quantidade'][indice] = input('Digite a quantidade: ')
+        else:
+            print('NÃO ENCONTRADO OU INEXISTENTE')
 
 def atualizarServico(servico, nomeprodserv):
-    for servicinhos in servico.values():
-        for i in servicinhos:
-            if nomeprodserv == servico['Nome do produto'][i]:
-                servicinhos[0] = input('Digite o nome do produto: ').upper()
-                servicinhos[1] = input('Digite a categoria: ').upper()
-                servicinhos[2] = float(input('Digite o valor do produto: '))
-                servicinhos[3] = int(input('Digite a quantidade disponível: '))
+    for nomes in servico['Nome do serviço']:
+        if nomes == nomeprodserv:
+            indice = servico['Nome do servico'].index(nomes)
+            
+            servico['Nome do servico'][indice] = input('Digite o nome do produto: ').upper()
+            servico['Descricao do servico'][indice] = input('Digite a descrição: ').upper()
+            servico['Categoria'][indice] = input('Digite a categoria: ').upper()
+            servico['Valor'][indice] = float(input('Digite o valor do produto: '))
+            servico['Horário'][indice] = int(input('Digite o horário: '))
+        else:
+            print('NÃO ENCONTRADO OU INEXISTENTE')
 
 def atualizarPetsVenda(pets_venda, nomeprodserv):
-    for petsinhos in pets_venda.values():
-        for i in petsinhos:
-            if nomeprodserv == pets_venda['Nome do produto'][i]:
-                petsinhos[0] = input('Digite o nome do produto: ').upper()
-                petsinhos[1] = input('Digite a categoria: ').upper()
-                petsinhos[2] = float(input('Digite o valor do produto: '))
-                petsinhos[3] = int(input('Digite a quantidade disponível: '))
+    for id in pets_venda['Identificador']:
+        if id == nomeprodserv:
+            indice = pets_venda['Identificador'].index(id)
+            
+            pets_venda['Identificador'][indice] = int(input('ID do pet: '))
+            pets_venda['Raça'][indice] = input('Raça do pet: ')
+            pets_venda['Valor'][indice] = float(input('Valor do pet: '))
+            pets_venda['Quantidade disponível'][indice] = int(input('Quantidade do pet: '))
+        else:
+            print('NÃO ENCONTRADO OU INEXISTENTE')
