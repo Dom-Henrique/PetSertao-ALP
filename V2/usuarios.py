@@ -18,7 +18,7 @@ def userLogin(dados_usuario, emailusuario, senhausuario):
             print('E-MAIL ENCONTRADO COM SUCESSO!')
             for j in dados_usuario['Senha']:
                 if j == senhausuario:
-                    print('E-MAIL ENCONTRADO COM SUCESSO!')
+                    print('SENHA CORRETA!')
                     nome_index = dados_usuario['E-mail'].index(i)
                     print('REPITA O SEU ID')
                     reconhecimento_vocal(dados_usuario, nome_index)
@@ -31,5 +31,8 @@ def userLogin(dados_usuario, emailusuario, senhausuario):
                         print('TIPO DE USUÁRIO: ADM')
                         return 2
                         break
+                    
+                else:
+                    print('SENHA INCORRETA!')
         else:
             print('E-MAIL NÃO ENCONTRADO')
