@@ -95,9 +95,8 @@ while True:
                                                 "4 - Atualizar dados de profissional\n"
                                                 "5 - Atualizar dados de produto e serviço ou pet\n"
                                                 "6 - Remover dados\n"
-                                                "7 - Imprimir dados\n"
-                                                "8 - Gerar relatório\n"
-                                                "9 - Sair\n"))
+                                                "7 - Gerar relatório\n"
+                                                "8 - Sair\n"))
 
                     if opcao_usuario == 1:
                         tipo_acao = int(input("1 - Produto 2 - Serviço 3 - Pet\n"))
@@ -156,15 +155,13 @@ while True:
                             print('ATUALIZAÇÃO FEITA COM SUCESSO')
 
                     elif opcao_usuario == 7:
-                        Usuarios_Info(dados_usuario_df)
-                        
-                    elif opcao_usuario == 8:
                         if os.path.exists('Tabelas'):
                             pass
                         else:
                             os.mkdir('Tabelas')
                         GerarRelatorio(produto, servico, pets_venda, dados_usuario, profissionais)
-                    elif opcao_usuario == 9:
+                    
+                    elif opcao_usuario == 8:
                         break
 
             # Menu clientes
