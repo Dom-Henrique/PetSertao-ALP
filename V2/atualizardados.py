@@ -1,13 +1,16 @@
 def atualizarProfissionais(profissionais):
     profissional = input('Nome do(a) profissional: ').upper()
-    for i in profissionais.values():
-        if i[0] == profissional:
-            i[0] = input('Nome do profissional: ').upper()
-            i[1] = input('Ocupação: ').upper()
+    for nomes in profissionais['Nome do profissional']:
+        if nomes == profissional:
+            indice = profissionais['Nome do profissional'].index(profissional)
+            
+            profissionais['Nome do profissional'][indice] = input('Nome do profissional: ').upper()
+            profissionais['Ocupação'][indice] = input('Ocupação: ').upper()
             while True:
-                i[2] = int(input('Digite a hora de chegada: '))
-                i[3] = int(input('Digite a hora de saída: '))
-                if (i[2] > 6 and i[2] < 16) and (i[3] > 8 and i[3] < 18):
+                profissionais['Hora de entrada'][indice] = int(input('Digite a hora de chegada: '))
+                profissionais['Hora de saída'][indice] = int(input('Digite a hora de saída: '))
+                if (profissionais['Hora de entrada'][indice] > 6 and profissionais['Hora de entrada'][indice] < 16) and (profissionais['Hora de saída'][indice] > 8 and profissionais['Hora de saída'][indice] < 18):
+                    print('ATUALIZAÇÃO FEITA COM SUCESSO!')
                     break
                 else:
                     print("FUNCIONAMENTO APENAS DE 6H ÀS 18H\nTENTE NOVAMENTE")
@@ -24,6 +27,8 @@ def atualizarProduto(produto, nomeprodserv):
             produto['Categoria'][indice] = input('Digite a categoria: ').upper()
             produto['Valor'][indice] = input('Digite o valor: ')
             produto['Quantidade'][indice] = input('Digite a quantidade: ')
+            
+            print('ATUALIZAÇÃO FEITA COM SUCESSO!')
         else:
             print('NÃO ENCONTRADO OU INEXISTENTE')
 
@@ -37,6 +42,8 @@ def atualizarServico(servico, nomeprodserv):
             servico['Categoria'][indice] = input('Digite a categoria: ').upper()
             servico['Valor'][indice] = float(input('Digite o valor do produto: '))
             servico['Horário'][indice] = int(input('Digite o horário: '))
+            
+            print('ATUALIZAÇÃO FEITA COM SUCESSO!')
         else:
             print('NÃO ENCONTRADO OU INEXISTENTE')
 
@@ -49,5 +56,7 @@ def atualizarPetsVenda(pets_venda, nomeprodserv):
             pets_venda['Raça'][indice] = input('Raça do pet: ')
             pets_venda['Valor'][indice] = float(input('Valor do pet: '))
             pets_venda['Quantidade disponível'][indice] = int(input('Quantidade do pet: '))
+            
+            print('ATUALIZAÇÃO FEITA COM SUCESSO!')
         else:
             print('NÃO ENCONTRADO OU INEXISTENTE')
