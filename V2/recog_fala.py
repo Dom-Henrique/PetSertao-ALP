@@ -11,6 +11,7 @@ def reconhecimento_vocal(dados_usuario, index):
         fala_transcrita = reconhecer_voz.recognize_google(voz_usuario, language='pt-BR')
         print(fala_transcrita)
         if dados_usuario['ID'][index] == fala_transcrita:
+            print('AUTENTICAÇÃO FEITA COM SUCESSO!')
             return True
         else:
             quit()
