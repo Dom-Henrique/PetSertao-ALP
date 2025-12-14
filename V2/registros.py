@@ -82,9 +82,9 @@ def profissionaisReg(profissionais):
         else:
             print("FUNCIONAMENTO APENAS DE 6H ÀS 18H\nTENTE NOVAMENTE")
             
-            profissionais['Nome do profissional'].append(nomeprof)
-            profissionais['Ocupação'].append(opcupacao)
-            profissionais['Hora de entrada'].append(hora_prof_init)
-            profissionais['Hora de saída'].append(hora_prof_final)
-            
-            print('CADASTRO FEITO COM SUCESSO!')
+    profissionais['Nome do profissional'].append(nomeprof)
+    profissionais['Ocupação'].append(opcupacao)
+    profissionais['Hora de entrada'].append(hora_prof_init)
+    profissionais['Hora de saída'].append(hora_prof_final)
+    
+    print('CADASTRO FEITO COM SUCESSO!')
